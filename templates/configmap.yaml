@@ -9,9 +9,6 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   myvalue: "Hello World"
-  {{- $relname := .Release.Name -}}
-  {{- with .Values.favorite }}
-  drink: {{ .drink | default "tea" | quote }}
-  food: {{ .food | upper | quote }}
-  release: {{ $relname }}
+  {{- range $key, $val := .Values.favorite }}
+  {{ $key }}: {{ $val | quote }}
   {{- end }}
