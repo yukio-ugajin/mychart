@@ -9,15 +9,9 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   myvalue: "Hello World"
+  {{- $relname := .Release.Name -}}
   {{- with .Values.favorite }}
   drink: {{ .drink | default "tea" | quote }}
   food: {{ .food | upper | quote }}
-  toppings: |-
-    {{- range $.Values.pizzaToppings }}
-    - {{ . | title | quote }}
-    {{- end }}    
+  release: {{ $relname }}
   {{- end }}
-  sizes: |-
-    {{- range tuple "small" "medium" "large" }}
-    - {{ . }}
-    {{- end }}    
