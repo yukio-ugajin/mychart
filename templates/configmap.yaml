@@ -1,15 +1,6 @@
-# **********************************
-# * In Kubernetes, a ConfigMap is simply an object for storing configuration data. 
-# * Other things, like pods, can access the data in a ConfigMap.
-# **********************************/
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  {{- $files := .Files }}
-  {{- range tuple "config1.toml" "config2.toml" "config3.toml" }}
-  {{ . }}: |-
-        {{ $files.Get . }}
-  {{- end }}
+  salad: {{ .Values.global.salad }}
