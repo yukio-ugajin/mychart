@@ -17,3 +17,7 @@ data:
     - {{ . | title | quote }}
     {{- end }}    
   {{- end }}
+  sizes: |-
+    {{- range tuple "small" "medium" "large" }}
+    - {{ . }}
+    {{- end }}    
