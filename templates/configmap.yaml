@@ -7,11 +7,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
-  labels:
-{{ include "mychart.app" . | indent 4 }}
 data:
-  myvalue: "Hello World"
-  {{- range $key, $val := .Values.favorite }}
-  {{ $key }}: {{ $val | quote }}
+  {{- $files := .Files }}
+  {{- range tuple "config1.toml" "config2.toml" "config3.toml" }}
+  {{ . }}: |-
+        {{ $files.Get . }}
   {{- end }}
-{{ include "mychart.app" . | indent 2 }}
