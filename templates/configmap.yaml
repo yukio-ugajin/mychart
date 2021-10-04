@@ -3,11 +3,6 @@
 # * Other things, like pods, can access the data in a ConfigMap.
 # **********************************/
 
-{{- define "mychart.labels" }}
-  labels:
-    generator: helm
-    date: {{ now | htmlDate }}
-{{- end }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
